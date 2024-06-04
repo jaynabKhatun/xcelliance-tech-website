@@ -14,7 +14,7 @@ import {
 
 
 
-// import axios from 'axios'
+import axios from 'axios'
 import app from '../Firebase/FirebaseConfig'
 
 export const AuthContext = createContext(null)

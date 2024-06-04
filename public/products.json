@@ -1,0 +1,104 @@
+[
+    {
+        "name": "Super Productivity",
+        "image": "https://ibb.co/dW7wPPJ",
+        "description": "An advanced productivity tool to manage your tasks and projects. Super Productivity helps you organize your work efficiently, providing features for task tracking, time management, and collaboration.",
+        "tags": ["Productivity", "Task Management"],
+        "externalLinks": ["https://superproductivity.com"],
+        "upvotes": 120,
+        "timestamp": "2024-06-01T10:00:00Z",
+        "category": "Web Apps"
+    },
+    {
+        "name": "Deep AI",
+        "image": "https://ibb.co/NFGnSF1",
+        "description": "A comprehensive AI platform for machine learning and data science. Deep AI offers advanced tools and algorithms for data analysis, predictive modeling, and natural language processing.",
+        "tags": ["AI", "Machine Learning"],
+        "externalLinks": ["https://deepai.com"],
+        "upvotes": 95,
+        "timestamp": "2024-05-30T12:00:00Z",
+        "category": "AI Tools"
+    },
+    {
+        "name": "Mighty Note",
+        "image": "https://example.com/mighty-note.png",
+        "description": "A powerful note-taking app for all your documentation needs. Mighty Note offers rich text editing, cloud sync, and organization features to keep your notes accessible and organized.",
+        "tags": ["Notes", "Productivity"],
+        "externalLinks": ["https://mightynote.com"],
+        "upvotes": 75,
+        "timestamp": "2024-05-28T14:00:00Z",
+        "category": "Mobile Apps"
+    },
+    {
+        "name": "GameHub",
+        "image": "https://ibb.co/2cmxXJS",
+        "description": "A community-driven platform to discover and share new games. GameHub connects gamers worldwide, offering a diverse collection of games, reviews, and discussions.",
+        "tags": ["Games", "Community"],
+        "externalLinks": ["https://gamehub.com"],
+        "upvotes": 150,
+        "timestamp": "2024-06-02T08:00:00Z",
+        "category": "Games"
+    },
+    {
+        "name": "CodeMaster",
+        "image": "https://ibb.co/JQW7hVk",
+        "description": "An interactive coding platform for learning and practicing programming. CodeMaster provides tutorials, coding challenges, and a supportive community to help you master programming languages and concepts.",
+        "tags": ["Education", "Coding"],
+        "externalLinks": ["https://codemaster.com"],
+        "upvotes": 180,
+        "timestamp": "2024-06-03T09:00:00Z",
+        "category": "Web Apps"
+    },
+    {
+        "name": "PhotoEnhance",
+        "image": "https://ibb.co/swbL5LP",
+        "description": "An AI-based tool to enhance and edit your photos. PhotoEnhance uses advanced algorithms to improve image quality, adjust colors, and remove imperfections.",
+        "tags": ["AI", "Photo Editing"],
+        "externalLinks": ["https://photoenhance.com"],
+        "upvotes": 110,
+        "timestamp": "2024-05-25T11:00:00Z",
+        "category": "AI Tools"
+    },
+    {
+        "name": "FitTracker",
+        "image": "https://ibb.co/YkWpVnn",
+        "description": "A comprehensive app to track your fitness and health goals. FitTracker monitors your exercise, diet, and sleep patterns, providing insights and recommendations for a healthier lifestyle.",
+        "tags": ["Health", "Fitness"],
+        "externalLinks": ["https://fittracker.com"],
+        "upvotes": 85,
+        "timestamp": "2024-05-20T13:00:00Z",
+        "category": "Mobile Apps"
+    },
+    {
+        "name": "PuzzleWorld",
+        "image": "https://ibb.co/F5shLHk",
+        "description": "A collection of challenging puzzles and games for all ages. PuzzleWorld offers a wide variety of brain teasers, logic puzzles, and strategy games to keep you entertained and engaged.",
+        "tags": ["Games", "Puzzle"],
+        "externalLinks": ["https://puzzleworld.com"],
+        "upvotes": 140,
+        "timestamp": "2024-06-01T15:00:00Z",
+        "category": "Games"
+    },
+    {
+        "name": "TechNews",
+        "image": "https://ibb.co/F3SRTLr",
+        "description": "A platform to stay updated with the latest technology news. TechNews delivers breaking news, in-depth analysis, and expert commentary on the latest trends and innovations in the tech industry.",
+        "tags": ["News", "Technology"],
+        "externalLinks": ["https://technews.com"],
+        "upvotes": 130,
+        "timestamp": "2024-05-27T08:00:00Z",
+        "category": "Web Apps"
+    },
+    {
+        "name": "VoiceBot",
+        "image": "https://ibb.co/SdsWGbB",
+        "description": "An AI-powered voice assistant for your daily tasks. VoiceBot understands natural language commands, sets reminders, answers questions, and performs tasks hands-free.",
+        "tags": ["AI", "Voice Assistant"],
+        "externalLinks": ["https://voicebot.com"],
+        "upvotes": 100,
+        "timestamp": "2024-05-29T16:00:00Z",
+        "category": "AI Tools"
+    
+    }
+]    
+  

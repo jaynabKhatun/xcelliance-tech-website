@@ -1,11 +1,16 @@
 
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../src/assets/logo/Logo_Xcelliance_2.png'
-import { useContext } from 'react';
-import { AuthContext } from '../../Authprovider/AuthProvider';
+import useAuth from '../../Hooks/UseAuth';
 const Navbar = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut, } = useAuth();
+
+    const handleLogOut = () => {
+        logOut();
+    }
+
+
     return (
         <div className="navbar  shadow-2xl  fixed z-10 max-w-screen-xl mx-auto">
             <div className="flex-1">
@@ -28,7 +33,7 @@ const Navbar = () => {
                     }}
 
                 >Home</NavLink>
-                <NavLink to={'/products'}
+                <NavLink title='show all product' to={'/products'}
                     style={({ isActive }) => {
                         return {
                             color: isActive ? "red" : "white",
@@ -59,20 +64,26 @@ const Navbar = () => {
 
             {
                 user && <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                    <div title={user?.displayName} tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            <img
+                                referrerPolicy='no-referrer'
+                                alt='User Profile Photo'
+                                src={user?.photoURL}
+                            />
                         </div>
                     </div>
                     <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                         <li>
                             <a className="justify-between">
-                                Profile
+                                {
+                                    user?.displayName ? user?.displayName : user?.email.split('@')[0]
+                                }
                                 <span className="badge">New</span>
                             </a>
                         </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li><Link>Dashboard</Link></li>
+                        <li onClick={handleLogOut}><Link>Logout</Link></li>
                     </ul>
                 </div>
             }
