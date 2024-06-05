@@ -5,6 +5,7 @@ import useAxiosCommon from "../../../Hooks/UseAxiosCommon";
 import { BiSolidLike } from "react-icons/bi";
 import { data } from "autoprefixer";
 import { GrFormNextLink } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
 
 
@@ -72,8 +73,8 @@ const TrendingProductPages = () => {
                     )
                 }
                 <div className="flex justify-center items-center my-8 ">
-                    <button className="font-jost btn-outline flex justify-center items-center gap-4 border  px-2 py-2 rounded-md">More new apps release <GrFormNextLink /></button>
-
+                    <Link to={'/products'}><button className="font-jost btn-outline flex justify-center items-center gap-4 border  px-2 py-2 rounded-md">More new apps release <GrFormNextLink /></button>
+</Link>
                 </div>
             </div>
         </div >

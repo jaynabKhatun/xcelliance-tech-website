@@ -33,6 +33,7 @@ const Navbar = () => {
                     }}
 
                 >Home</NavLink>
+                
                 <NavLink title='show all product' to={'/products'}
                     style={({ isActive }) => {
                         return {
@@ -43,6 +44,8 @@ const Navbar = () => {
                         };
                     }}
                 >Product</NavLink>
+
+
                 {
                     !user && <NavLink to={'/login'}
                         style={({ isActive }) => {

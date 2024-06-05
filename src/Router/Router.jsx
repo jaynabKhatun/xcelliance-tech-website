@@ -7,6 +7,8 @@ import Home from "../Pages/Home/Home/Home";
 import LoginPage from "../Pages/LoginPage/LoginPage";
 import Registerpage from "../Pages/RegisterPage/Registerpage";
 import ErropPage from "../Pages/ErrorPage/ErropPage";
+import ProductsDetailsPages from "../Pages/ProductsDetails/ProductsDetailsPages";
+import Products from "../Pages/Products/Products";
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +27,14 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Registerpage></Registerpage>
+            },
+            {
+                path: '/products',
+                element: <Products></Products>
+            },
+            {
+                path: '/products/:id',
+                element: <ProductsDetailsPages></ProductsDetailsPages>
             }
         ]
     },
