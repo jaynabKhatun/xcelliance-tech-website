@@ -2,22 +2,22 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosCommon from "../../../Hooks/UseAxiosCommon";
-import { useState } from "react";
+
 import SingleFeatured from "./SingleFeatured";
+import { GrFormNextLink } from "react-icons/gr";
 
 
 const FeaureProduct = () => {
     const axiosCommon = useAxiosCommon();
-    const [products, setProducts] = useState([])
 
-    const { data } = useQuery({
+
+    const { data: products = [] } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
             const res = await axiosCommon.get('/products')
             // console.log(res.data)
             res.data = res.data.filter(product => product.category === 'Web Apps')
-            console.log(res.data)
-            setProducts(res.data)
+            return (res.data)
 
         }
     })
@@ -25,10 +25,14 @@ const FeaureProduct = () => {
     return (
         <div>
             <SectionTitle subHeading="Most Popular" heading="Featured Collection"></SectionTitle>
-            <div className="">
+            <div>
                 {
                     products.map(item => <SingleFeatured key={item._id} item={item}></SingleFeatured>)
                 }
+            </div>
+            <div className="flex justify-center items-center my-8 ">
+                <button className="font-jost btn-outline flex justify-center items-center gap-4 border  px-2 py-2 rounded-md">More new apps release <GrFormNextLink /></button>
+
             </div>
         </div>
     );

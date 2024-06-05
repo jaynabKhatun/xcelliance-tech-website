@@ -26,7 +26,7 @@ const Navbar = () => {
                     style={({ isActive }) => {
                         return {
                             color: isActive ? "red" : "white",
-                            fontWeight: isActive ? "900" : "500",
+                            fontWeight: isActive ? "700" : "500",
                             textDecoration: isActive ? "underline" : "none",
 
                         };
@@ -37,7 +37,7 @@ const Navbar = () => {
                     style={({ isActive }) => {
                         return {
                             color: isActive ? "red" : "white",
-                            fontWeight: isActive ? "900" : "500",
+                            fontWeight: isActive ? "700" : "500",
                             textDecoration: isActive ? "underline" : "none",
 
                         };
@@ -48,7 +48,7 @@ const Navbar = () => {
                         style={({ isActive }) => {
                             return {
                                 color: isActive ? "red" : "white",
-                                fontWeight: isActive ? "900" : "500",
+                                fontWeight: isActive ? "700" : "500",
                                 textDecoration: isActive ? "underline" : "none",
 
                             };

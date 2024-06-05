@@ -3,13 +3,14 @@ import { BiSolidLike } from "react-icons/bi";
 
 const SingleFeatured = ({ item }) => {
     console.log(item)
-    const { image, name, tags,upvotes } = item;
+    const { image, name, tags,upvotes,description} = item;
     return (
-        <div className="flex justify-center items-center  gap-20 ">
-            <div className="card mt-8 h-40 card-side w-11/12 border ">
+        <div className="flex  justify-center items-center  md:gap-20 ">
+            <div className="card mt-8 md:h-40 card-side w-11/12 border bg-base-200 hover:border-blue-600 hover:scale-105 transition ">
 
                 <div className="card-body">
-                    <h2 className="card-title">{name}</h2>
+                   
+                    <h2 className="card-title font-jost">{name}</h2>
                     <p>
                         {
                             tags.map((tag, index) => {
@@ -19,13 +20,16 @@ const SingleFeatured = ({ item }) => {
                             })
                         }
                     </p>
+                    <p className="font-jost">{description}</p>
+                   
 
                 </div>
-                <figure><img src={image} alt="Movie" /></figure>
+            <figure><img src={image} alt="Movie" /></figure>
             </div>
+           
 
-            <div className="w-1/12">
-                <div className="border flex justify-center flex-col  py-2 items-center">
+            <div className="w-1/12 hover:bg-gray-500 hover:scale-105">
+                <div className="border flex  justify-center flex-col  py-2 items-center">
                 <BiSolidLike className="text-4xl" />
                 {upvotes}
                
