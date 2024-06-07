@@ -2,22 +2,38 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../Hooks/UseAxiosCommon";
 import AllProducts from "./AllProducts";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+
 
 
 const Products = () => {
     const [search, setSearch] = useState('');
+    const [itemsPerPage, setItemsPerPage] = useState(6);
+    const [currentPage, setCurrentPage] = useState(0);
+
+
 
     const axiosCommon = useAxiosCommon();
-    const { data: products = [],refetch } = useQuery({
-        queryKey: ['products', search],
+    const { data: products = [], refetch } = useQuery({
+        queryKey: ['products', search, currentPage, itemsPerPage],
         queryFn: async () => {
-            const res = await axiosCommon.get(`/products?search=${search}`)
-            // console.log(res?.data)
+            const res = await axiosCommon.get(`/products?search=${search}&page=${currentPage}&size=${itemsPerPage}`);
+            console.log(res?.data)
             return res?.data;
         },
-        // enabled: !!search 
+
     })
+
+    //pagination
+
+    const pages = Math.ceil(products.length / itemsPerPage);
+
+
+    const page = [...Array(pages).keys()];
+    console.log(page);
+
+
 
 
     const handleSearch = (e) => {
@@ -26,6 +42,28 @@ const Products = () => {
         // console.log(search);
         setSearch(search);
         refetch();
+
+    }
+
+    const handleItemPerPage = (e) => {
+        console.log(e.target.value);
+        const val = parseInt(e.target.value);
+        console.log(val);
+        setItemsPerPage(val);
+        setCurrentPage(0);
+
+    }
+
+    const handlePrevPae = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+        }
+    }
+
+    const handleNextPage = () => {
+        if (currentPage < page.length - 1) {
+            setCurrentPage(currentPage + 1);
+        }
 
     }
 
@@ -62,6 +100,27 @@ const Products = () => {
                     products?.map(p => <AllProducts key={p._id} p={p}></AllProducts>)
                 }
             </div>
+            <div className="flex justify-center gap-4 pagination">
+                {/* <button onClick={handlePrevPae} className="btn">previous</button> */}
+
+
+                {
+                    page?.map(page => <button onClick={() => setCurrentPage(page)} key={page}
+                        className={currentPage === page ? 'btn bg-blue-600 text-white' : 'bg-gray-200 btn'}>
+                        {page}
+
+                    </button>)
+                }
+                <select value={itemsPerPage} onChange={handleItemPerPage} name="" id="">
+                    <option value="6">6</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+                {/* <button onClick={handleNextPage} className="btn">Next</button> */}
+            </div>
+
+
         </div>
     );
 };
