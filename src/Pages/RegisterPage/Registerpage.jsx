@@ -20,6 +20,9 @@ const Registerpage = () => {
         createUser(data.email, data.password)
             .then(res => {
                 console.log(res);
+                //update the user
+                
+
                 toast.success('User Created Successfully')
                 navigate('/')
             })

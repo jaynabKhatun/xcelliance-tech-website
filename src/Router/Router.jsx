@@ -9,6 +9,10 @@ import Registerpage from "../Pages/RegisterPage/Registerpage";
 import ErropPage from "../Pages/ErrorPage/ErropPage";
 import ProductsDetailsPages from "../Pages/ProductsDetails/ProductsDetailsPages";
 import Products from "../Pages/Products/Products";
+import Dasboard from "../Layout/Dasboard";
+import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
+import MyProfile from "../Pages/Dashboard/Myprofile/MyProfile";
+import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 
 export const router = createBrowserRouter([
     {
@@ -38,5 +42,25 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: 'dashboard',
+        element: <Dasboard></Dasboard>,
+        children: [
+
+            {
+                path: 'myProfile',
+                element: <MyProfile></MyProfile>
+            },
+            {
+                path: 'addProduct',
+                element: <AddProduct></AddProduct>
+            },
+            {
+                path:'myProducts',
+                element:<MyProducts></MyProducts>
+            }
+
+        ]
+    }
 ]);
 

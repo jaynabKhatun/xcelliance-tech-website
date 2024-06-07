@@ -19,7 +19,7 @@ const Products = () => {
         queryKey: ['products', search, currentPage, itemsPerPage],
         queryFn: async () => {
             const res = await axiosCommon.get(`/products?search=${search}&page=${currentPage}&size=${itemsPerPage}`);
-            console.log(res?.data)
+            // console.log(res?.data)
             return res?.data;
         },
 
@@ -31,7 +31,7 @@ const Products = () => {
 
 
     const page = [...Array(pages).keys()];
-    console.log(page);
+    // console.log(page);
 
 
 
@@ -54,18 +54,18 @@ const Products = () => {
 
     }
 
-    const handlePrevPae = () => {
-        if (currentPage > 0) {
-            setCurrentPage(currentPage - 1);
-        }
-    }
+    // const handlePrevPae = () => {
+    //     if (currentPage > 0) {
+    //         setCurrentPage(currentPage - 1);
+    //     }
+    // }
 
-    const handleNextPage = () => {
-        if (currentPage < page.length - 1) {
-            setCurrentPage(currentPage + 1);
-        }
+    // const handleNextPage = () => {
+    //     if (currentPage < page.length - 1) {
+    //         setCurrentPage(currentPage + 1);
+    //     }
 
-    }
+    // }
 
     return (
         <div >
@@ -100,14 +100,14 @@ const Products = () => {
                     products?.map(p => <AllProducts key={p._id} p={p}></AllProducts>)
                 }
             </div>
-            <div className="flex justify-center gap-4 pagination">
+            <div className="flex justify-center gap-4 pagination mt-10">
                 {/* <button onClick={handlePrevPae} className="btn">previous</button> */}
 
 
                 {
                     page?.map(page => <button onClick={() => setCurrentPage(page)} key={page}
                         className={currentPage === page ? 'btn bg-blue-600 text-white' : 'bg-gray-200 btn'}>
-                        {page}
+                        {page+1}
 
                     </button>)
                 }

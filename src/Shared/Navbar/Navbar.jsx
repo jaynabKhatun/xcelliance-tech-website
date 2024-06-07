@@ -33,7 +33,7 @@ const Navbar = () => {
                     }}
 
                 >Home</NavLink>
-                
+
                 <NavLink title='show all product' to={'/products'}
                     style={({ isActive }) => {
                         return {
@@ -85,7 +85,8 @@ const Navbar = () => {
                                 <span className="badge">New</span>
                             </a>
                         </li>
-                        <li><Link>Dashboard</Link></li>
+                        {/* dasboard content */}
+                        <li><Link to={'/dashboard/myProfile'}>Dashboard</Link></li>
                         <li onClick={handleLogOut}><Link>Logout</Link></li>
                     </ul>
                 </div>
