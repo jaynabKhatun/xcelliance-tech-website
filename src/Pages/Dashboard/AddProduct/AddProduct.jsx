@@ -4,11 +4,14 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useAxiosCommon from '../../../Hooks/UseAxiosCommon';
 import toast from 'react-hot-toast';
 import useAuth from '../../../Hooks/UseAuth';
+import { useNavigate } from 'react-router-dom';
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
 const image_hosting_api_key = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const AddProduct = () => {
+    const navigate = useNavigate();
     const [tags, setTags] = useState([]);
     const axiosCommon = useAxiosCommon();
     const { user } = useAuth();
@@ -44,7 +47,7 @@ const AddProduct = () => {
                 image: res.data.data.display_url,
 
                 userName: user?.name,
-                userEmail: user?.email,
+                email: user?.email,
                 userImage: user?.image,
                 time: new Date()
 
@@ -52,9 +55,11 @@ const AddProduct = () => {
             const newItem = await axiosCommon.post('/products', addProduct)
             console.log(newItem);
             if (newItem.data.insertedId) {
-                toast.success('Product Added Successfully');
+                navigate('/Products')
+               
                 form.reset();
                 setTags([]);
+                toast.success('Product Added Successfully');
 
             }
 
