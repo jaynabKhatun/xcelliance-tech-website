@@ -1,5 +1,6 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
 import propTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 
 
@@ -16,7 +17,7 @@ const ProducTable = ({ table, index, handleDelete }) => {
     return (
         <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
             <td className="p-3">
-                <p>{index+1}</p>
+                <p>{index + 1}</p>
             </td>
             <td className="p-3">
                 <p>{name}</p>
@@ -27,8 +28,10 @@ const ProducTable = ({ table, index, handleDelete }) => {
             </td>
             <td className="p-3">
 
-                <p className="dark:text-gray-600 text-2xl"><FaEdit></FaEdit></p>
+                <Link to={`/dashboard/updateItem/${_id}`} className="dark:text-gray-600 text-2xl"><FaEdit></FaEdit></Link>
             </td>
+
+
             <td onClick={() => handleDelete(_id)} className="p-3  ">
                 <p className="text-2xl"><FaTrash></FaTrash></p>
             </td>
