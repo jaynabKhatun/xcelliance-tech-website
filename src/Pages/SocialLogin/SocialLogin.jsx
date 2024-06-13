@@ -2,19 +2,35 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../Hooks/UseAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import useAxiosCommon from "../../Hooks/UseAxiosCommon";
 
 const SocialLogin = () => {
+    const axiosCommon = useAxiosCommon();
     const { signInWithGoogle } = useAuth();
     const navigate = useNavigate();
+
 
     const location = useLocation();
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
+
             .then(res => {
                 console.log(res);
-                navigate(location.state || '/')
-                toast.success('Login Successfull')
+
+                const userInfo = {
+                    email: res.user?.email,
+                    name: res.user?.displayName
+                }
+                axiosCommon.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data)
+                        navigate(location.state || '/')
+                        toast.success('Login Successfull')
+
+
+                    })
+
 
             })
             .catch(err => {

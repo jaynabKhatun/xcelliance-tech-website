@@ -3,38 +3,55 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { Helmet } from 'react-helmet';
 import { useForm } from 'react-hook-form';
-import { FcGoogle } from 'react-icons/fc';
+
 import useAuth from '../../Hooks/UseAuth';
 import toast from 'react-hot-toast';
+import SocialLogin from '../SocialLogin/SocialLogin';
+import useAxiosCommon from '../../Hooks/UseAxiosCommon';
 
 
 const Registerpage = () => {
 
     const { createUser, updateUserProfile } = useAuth();
- 
+    const axiosCommon = useAxiosCommon();
+
     const navigate = useNavigate();
 
     //react hook form
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        console.log("form data hre",data);
+        console.log("form data hre", data);
         createUser(data.email, data.password)
             .then(res => {
                 const loggedUder = res.user;
                 console.log(loggedUder);
 
                 //update the user
-                updateUserProfile(data?.name,data.photoUrl)
+                updateUserProfile(data?.name, data.photoUrl)
 
                     .then(res => {
-                        console.log(res);
-                      
-                        toast.success('User updated Successfully')
+                        console.log(res)
+
+                        //use info send  to the database
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+
+                        axiosCommon.post('/users', userInfo)
+                        .then(res=>{
+                            console.log(res.data)
+                            if(res.data.insertedId){
+                                toast.success('User Created Successfully')
+                                navigate('/')
+                            }
+                        })
+
 
                     })
                     .catch(err => {
-                        
+
                         toast.error(err.message)
                     })
 
@@ -43,7 +60,7 @@ const Registerpage = () => {
                 toast.success('User Created Successfully')
                 navigate('/')
             })
-           
+
     };
 
     return (
@@ -71,13 +88,7 @@ const Registerpage = () => {
                         Welcome back!
                     </p>
 
-                    <a href="#" className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <div className="px-4 py-2">
-                            <FcGoogle className='text-2xl'></FcGoogle>
-                        </div>
-
-                        <span className="w-5/6 px-4 py-3 font-bold text-center">Sign in with Google</span>
-                    </a>
+                    <SocialLogin></SocialLogin>
 
                     <div nonce="flex items-center justify-between mt-4">
                         <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
