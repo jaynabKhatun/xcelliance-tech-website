@@ -71,7 +71,7 @@ const LoginPage = () => {
             <div className="flex my-12 w-full max-w-sm mx-auto min-h-[calc(100vh-100px)] overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
                 <Helmet>
                     <title>
-                        Login Page || Xcelliance
+                        Login Page|Xcelliance
                     </title>
                 </Helmet>
                 <div className="hidden bg-cover  lg:block lg:w-1/2 " style={{
