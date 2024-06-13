@@ -2,33 +2,21 @@
 
 import login from '../../../src/assets/login/login.png'
 import { FcGoogle } from 'react-icons/fc';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Authprovider/AuthProvider';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
+import SocialLogin from '../SocialLogin/SocialLogin';
+import useAuth from '../../Hooks/UseAuth';
 
 const LoginPage = () => {
+
+    const { signIn } = useAuth();
     const navigate = useNavigate();
-
-    const { signIn,
-        signInWithGoogle } = useContext(AuthContext);
+    const location = useLocation();
 
 
-    const handleGoogleSignIn = async () => {
-        try {
-            await signInWithGoogle()
-            toast.success('Login Successfull')
-        }
-        catch (error) {
-            console.log(error)
-            toast.error(error.message)
-
-        }
-        navigate('/')
-
-
-    }
 
 
     //email pasword sign in
@@ -46,8 +34,9 @@ const LoginPage = () => {
         signIn(email, password)
             .then(res => {
                 console.log(res)
+                navigate(location.state || '/')
                 toast.success('Login Successfull')
-                navigate('/')
+
             })
             .catch(err => {
                 console.log(err)
@@ -90,13 +79,7 @@ const LoginPage = () => {
                         Welcome back!
                     </p>
 
-                    <div onClick={handleGoogleSignIn} className="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <div className="px-4 py-2">
-                            <FcGoogle className='text-2xl'></FcGoogle>
-                        </div>
-
-                        <span className="w-5/6 px-4 py-3 font-bold text-center">Sign in with Google</span>
-                    </div>
+                    <SocialLogin></SocialLogin>
 
                     <div nonce="flex items-center justify-between mt-4">
                         <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>

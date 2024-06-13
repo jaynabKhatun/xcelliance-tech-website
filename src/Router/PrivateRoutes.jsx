@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import { Navigate, useLocation } from 'react-router-dom'
-import LoadingSpinner from '../components/Shared/LoadingSpinner'
+
 import useAuth from '../Hooks/UseAuth'
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
-    const location = useLocation()
+    const location = useLocation();
 
-    if (loading) return <LoadingSpinner />
+    if (loading) return <span className="loading loading-infinity loading-lg"></span>
     if (user) return children
     return <Navigate to='/login' state={location.pathname} replace='true' />
 }

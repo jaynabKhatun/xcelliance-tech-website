@@ -9,27 +9,41 @@ import toast from 'react-hot-toast';
 
 
 const Registerpage = () => {
-    const { createUser } = useAuth();
+
+    const { createUser, updateUserProfile } = useAuth();
+ 
     const navigate = useNavigate();
 
     //react hook form
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        console.log(data);
+        console.log("form data hre",data);
         createUser(data.email, data.password)
             .then(res => {
-                console.log(res);
+                const loggedUder = res.user;
+                console.log(loggedUder);
+
                 //update the user
-                
+                updateUserProfile(data?.name,data.photoUrl)
+
+                    .then(res => {
+                        console.log(res);
+                      
+                        toast.success('User updated Successfully')
+
+                    })
+                    .catch(err => {
+                        
+                        toast.error(err.message)
+                    })
+
+
 
                 toast.success('User Created Successfully')
                 navigate('/')
             })
-            .catch(err => {
-                console.log(err);
-                toast.error(err.message)
-            })
+           
     };
 
     return (

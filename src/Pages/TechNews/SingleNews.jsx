@@ -1,7 +1,7 @@
 
 import propTypes from "prop-types"
 const SingleNews = ({ news }) => {
-    console.log(news)
+    // console.log(news)
     const {pic,date, windows, heading } = news;
     return (
         <div className="card w-96  bg-base-200 shadow-xl mt-10 hover:scale-105 transition hover:border hover:border-blue-600 ">

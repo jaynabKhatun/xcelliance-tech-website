@@ -3,7 +3,7 @@ import { BiSolidLike } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const SingleFeatured = ({ item }) => {
-    console.log(item)
+    // console.log(item)
     const { image, name, tags, upvotes, description, _id } = item;
     return (
         <div className="flex  justify-center items-center  md:gap-20 ">

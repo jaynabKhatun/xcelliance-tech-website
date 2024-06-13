@@ -20,7 +20,7 @@ const TrendingProductPages = () => {
         queryKey: ['trendingProducts'],
         queryFn: async () => {
             const res = await axiosCommon.get('/products')
-            console.log(res.data)
+            // console.log(res.data)
             return (res.data)
 
 
