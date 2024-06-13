@@ -40,13 +40,13 @@ const Registerpage = () => {
                         }
 
                         axiosCommon.post('/users', userInfo)
-                        .then(res=>{
-                            console.log(res.data)
-                            if(res.data.insertedId){
-                                toast.success('User Created Successfully')
-                                navigate('/')
-                            }
-                        })
+                            .then(res => {
+                                console.log(res.data)
+                                if (res.data.insertedId) {
+                                    toast.success('User Created Successfully')
+                                    navigate('/')
+                                }
+                            })
 
 
                     })

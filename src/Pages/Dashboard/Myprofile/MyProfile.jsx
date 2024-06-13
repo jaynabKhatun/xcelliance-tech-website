@@ -1,12 +1,15 @@
 
+
 import useAuth from "../../../Hooks/UseAuth";
+
+
 
 
 
 const MyProfile = () => {
 
     const { user } = useAuth();
-    console.log(user);
+    // console.log(user);
 
 
     return (
@@ -92,12 +95,11 @@ const MyProfile = () => {
                                 </div>
                             </div>
 
-                            <div className="my-10 lg:w-[70%] md:h-[14rem] xs:w-full xs:h-[10rem]">
+                            {/* calender */}
 
 
 
 
-                            </div>
                         </div>
                         {/* social link */}
                         <div
@@ -151,6 +153,8 @@ const MyProfile = () => {
 
                     </div>
                 </div>
+
+
             </section>
         </ div>
 

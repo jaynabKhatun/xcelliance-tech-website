@@ -49,6 +49,8 @@ export const router = createBrowserRouter([
         element: <Dasboard></Dasboard>,
         children: [
 
+            // normal user routes
+
             {
                 path: 'myProfile',
                 element: <MyProfile></MyProfile>
@@ -66,6 +68,9 @@ export const router = createBrowserRouter([
                 element: <UpdateItem></UpdateItem>,
                 loader: ({ params }) => fetch(`http://localhost:5000/productsUp/${params.id}`)
             }
+
+            // admin routes
+            
 
         ]
     }
