@@ -36,10 +36,12 @@ const Registerpage = () => {
                         //use info send  to the database
                         const userInfo = {
                             name: data.name,
-                            email: data.email
+                            email: data.email,
+                            role: 'guest',
+                            status: 'verified',
                         }
 
-                        axiosCommon.post('/users', userInfo)
+                        axiosCommon.put('/user', userInfo)
                             .then(res => {
                                 console.log(res.data)
                                 if (res.data.insertedId) {

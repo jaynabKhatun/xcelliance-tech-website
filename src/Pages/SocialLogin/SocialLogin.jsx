@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/UseAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAxiosCommon from "../../Hooks/UseAxiosCommon";
+import { Timestamp } from "firebase/firestore";
 
 const SocialLogin = () => {
     const axiosCommon = useAxiosCommon();
@@ -20,9 +21,14 @@ const SocialLogin = () => {
 
                 const userInfo = {
                     email: res.user?.email,
-                    name: res.user?.displayName
+                    name: res.user?.displayName,
+                    role: 'guest',
+                    status: 'verified',
+                    Timestamp: Date.now(),
                 }
-                axiosCommon.post('/users', userInfo)
+                console.log(userInfo);
+
+                axiosCommon.put('/user', userInfo)
                     .then(res => {
                         console.log(res.data)
                         navigate(location.state || '/')

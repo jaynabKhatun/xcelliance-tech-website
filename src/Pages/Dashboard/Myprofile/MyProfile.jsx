@@ -1,6 +1,8 @@
 
 
 import useAuth from "../../../Hooks/UseAuth";
+import UseRole from "../../../Hooks/UseRole";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 
 
 
@@ -8,7 +10,9 @@ import useAuth from "../../../Hooks/UseAuth";
 
 const MyProfile = () => {
 
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
+    const [role, isLoading] = UseRole();
+    if (isLoading || loading) return <LoadingSpinner></LoadingSpinner>
     // console.log(user);
 
 
@@ -31,7 +35,8 @@ const MyProfile = () => {
                         <h1
                             className="w-full text-left my-4 sm:mx-4 xs:pl-4 text-gray-800 dark:text-white lg:text-4xl md:text-3xl sm:text-3xl xs:text-xl font-serif">
                             {user?.displayName
-                            }</h1>
+                            } <button className="badge py-2 ml-4 uppercase px-4 badge-success text-white"> {role}</button></h1>
+
 
                         <div>
                             <button type="button" className="relative px-8 btn-secondary py-4 ml-4 mt-4 overflow-hidden font-semibold rounded btn dark:text-gray-50"> Membership Subscribe
