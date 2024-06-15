@@ -4,7 +4,10 @@ import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/UseAuth";
 import UseRole from "../Hooks/UseRole";
 import NavlinkMenu from "../Pages/Dashboard/NavlinkMenu/NavlinkMenu";
-import { HiViewGridAdd } from "react-icons/hi";
+
+import GuestMenu from "../Pages/Dashboard/NavlinkMenu/GuestMenu";
+import ModaratorMenu from "../Pages/Dashboard/NavlinkMenu/ModaratorMenu";
+import AdminMenu from "../Pages/Dashboard/NavlinkMenu/AdminMenu";
 
 
 
@@ -24,7 +27,7 @@ const Dasboard = () => {
     return (
         <div className="md:flex justify-between ">
             <div className=" p-3 space-y-2 md:w-60 bg-blue-400 text-white font-jost md:min-h-screen  ">
-                <div className="flex items-center p-2 space-x-4">
+                {/* <div className="flex items-center p-2 space-x-4">
                     <img src={user?.photoURL} alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" />
                     <div>
                         <h2 className="text-lg font-semibold">{user?.displayName}</h2>
@@ -32,14 +35,18 @@ const Dasboard = () => {
                             <Link to={'/dashboard/myProfile'} rel="noopener noreferrer" href="#" className="text-xs hover:underline dark:text-gray-600">View profile</Link>
                         </span>
                     </div>
-                </div>
+                </div> */}
 
                 {/* user dashboard */}
                 <div className="divide-y-4 dark:divide-gray-300 relative justify-between ">
 
                     <div>
+                        {role === 'guest' && < GuestMenu />}
+                        {role ==='moderator' && <ModaratorMenu />}
+                        {role === 'admin' && < AdminMenu />}
 
-                        <nav className="menu p-4" >
+                        {/* <nav className="menu p-4" >
+
 
                             <NavlinkMenu label='My Profile' address='/dashboard/myProfile' icon={FaUser}></NavlinkMenu>
 
@@ -48,7 +55,18 @@ const Dasboard = () => {
                             <NavlinkMenu label=' Add Product' address='/dashboard/addProduct' icon={HiViewGridAdd}></NavlinkMenu>
 
 
-                        </nav>
+                        </nav> */}
+                        {/* <nav className="menu p-4" >
+
+
+                            <NavlinkMenu label='My Profile' address='/dashboard/myProfile' icon={FaUser}></NavlinkMenu>
+
+                            <NavlinkMenu label=' My Products' address='/dashboard/myProducts' icon={FaCartPlus}></NavlinkMenu>
+
+                            <NavlinkMenu label=' Add Product' address='/dashboard/addProduct' icon={HiViewGridAdd}></NavlinkMenu>
+
+
+                        </nav> */}
                     </div>
 
 
