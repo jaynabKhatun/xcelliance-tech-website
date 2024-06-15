@@ -42,8 +42,9 @@ const Dasboard = () => {
 
                     <div>
                         {role === 'guest' && < GuestMenu />}
-                        {role ==='moderator' && <ModaratorMenu />}
+                        {role === 'moderator' && <ModaratorMenu />}
                         {role === 'admin' && < AdminMenu />}
+
 
                         {/* <nav className="menu p-4" >
 

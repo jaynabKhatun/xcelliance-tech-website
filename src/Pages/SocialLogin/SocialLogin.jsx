@@ -3,7 +3,6 @@ import useAuth from "../../Hooks/UseAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAxiosCommon from "../../Hooks/UseAxiosCommon";
-import { Timestamp } from "firebase/firestore";
 
 const SocialLogin = () => {
     const axiosCommon = useAxiosCommon();
