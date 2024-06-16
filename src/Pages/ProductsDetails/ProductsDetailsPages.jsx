@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import paralax from '../../../src/assets/bg/bg.jpg'
+
 
 import { useParams } from 'react-router-dom';
 import useAxiosCommon from '../../Hooks/UseAxiosCommon';
 import { BiSolidLike } from 'react-icons/bi';
 import { FaStar } from 'react-icons/fa';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import { useState } from 'react';
+import ProductReportModal from '../../components/Modal/ProductReportModal';
 
 
 
@@ -13,6 +15,8 @@ const ProductsDetailsPages = () => {
     // const axiosSecure = useAxiosSecure();
     const axiosCommon = useAxiosCommon()
     const { id } = useParams();
+
+    const [isOpen, setIsOpen] = useState(false)
 
     const { data: products = [] } = useQuery({
         queryKey: ['products', id],
@@ -38,9 +42,11 @@ const ProductsDetailsPages = () => {
 
     }
 
-    // <div className='h-[700px]  opacity-80  mb-96' style={{
-    //     backgroundImage: `url(${paralax})`,
-    // }}>
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+
+
 
     return (
         <div className="p-5 mx-auto sm:p-10 md:p-16 dark:bg-gray-100 dark:text-gray-800 ">
@@ -71,7 +77,12 @@ const ProductsDetailsPages = () => {
                     <div className='flex justify-end gap-6'>
                         <button className="btn btn-outline btn-secondary border-blue-600">{products.upvotes}<BiSolidLike className='text-4xl' />
                         </button>
-                        <button className="btn btn-outline btn-secondary border-blue-600">Report This Product</button>
+                        <button onClick={()=>setIsOpen(true)}
+                            className="btn btn-outline btn-secondary border-blue-600">
+                            Report This Product
+                        </button>
+                        {/* modal */}
+                        <ProductReportModal isOpen={isOpen} closeModal={closeModal} setIsOpen={setIsOpen} products={products.name} />
                     </div>
 
                     <h1 className='text-4xl font-jost'>
