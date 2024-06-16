@@ -14,7 +14,7 @@ const SingleFeatured = ({ item }) => {
                     <h2 className="card-title font-jost">{name}</h2>
                     <p>
                         {
-                            tags.map((tag, index) => {
+                            tags?.map((tag, index) => {
                                 return (
                                     <span key={index} className="badge badge-primary mr-3">{tag}</span>
                                 )

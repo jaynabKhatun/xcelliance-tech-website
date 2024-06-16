@@ -1,11 +1,69 @@
+import { Helmet } from 'react-helmet-async'
+import useAuth from '../../../Hooks/UseAuth'
+import useAxiosSecure from '../../../Hooks/UseAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
+import ReportedDataRow from './ReportedDataRow';
 
 
 const ReportedContent = () => {
-    return (
-        <div>
-            <h1>reported  content</h1>
-        </div>
-    );
-};
+  
+    const axiosSecure = useAxiosSecure();
 
-export default ReportedContent;
+    const { data: products = [], isLoading, refetch } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = await axiosSecure('/report')
+            return (res.data)
+        }
+
+    })
+
+    if (isLoading) return <LoadingSpinner></LoadingSpinner>
+
+
+
+    return (
+        <>
+            <div className='container mx-auto px-4 sm:px-8'>
+                <Helmet>
+                    <title>Manage Users</title>
+                </Helmet>
+                <div className='py-8'>
+                    <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
+                        <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
+                            <table className='min-w-full leading-normal'>
+                                <thead>
+                                    <tr>
+                                        <th
+                                            scope='col'
+                                            className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                                        >
+                                            Product Name
+                                        </th>
+                                        <th
+                                            scope='col'
+                                            className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                                        >
+                                            View Details
+                                        </th>
+                                        <th
+                                            scope='col'
+                                            className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                                        >
+                                            Delete
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>{products.map(p => <ReportedDataRow key={p._id} refetch={refetch} p={p}></ReportedDataRow>)}</tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default ReportedContent
