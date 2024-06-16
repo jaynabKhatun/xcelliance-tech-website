@@ -20,6 +20,8 @@ import StatisticsPage from "../Pages/Dashboard/Admin/StatisticsPage";
 import ManageCupon from "../Pages/Dashboard/Admin/ManageCupon";
 import ProductReviewQueue from "../Pages/Dashboard/Modarator/ProductReviewQueue";
 import ReportedContent from "../Pages/Dashboard/Modarator/ReportedContent";
+import AdminRoute from "./AdminRoute";
+import ModaretorRoute from "./ModaretorRoute";
 
 export const router = createBrowserRouter([
     {
@@ -51,26 +53,26 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <Dasboard></Dasboard>,
+        element: <PrivateRoute><Dasboard></Dasboard></PrivateRoute>,
         children: [
 
             // normal user routes
 
             {
                 path: 'myProfile',
-                element: <MyProfile></MyProfile>
+                element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
             },
             {
                 path: 'addProduct',
-                element: <AddProduct></AddProduct>
+                element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
             },
             {
                 path: 'myProducts',
-                element: <MyProducts></MyProducts>
+                element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>
             },
             {
                 path: 'updateItem/:id',
-                element: <UpdateItem></UpdateItem>,
+                element: <PrivateRoute><UpdateItem></UpdateItem></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/productsUp/${params.id}`)
             },
 
@@ -78,25 +80,55 @@ export const router = createBrowserRouter([
             //modarator routes
             {
                 path: 'productReview',
-                element: <ProductReviewQueue></ProductReviewQueue>
+                element:
+                    <PrivateRoute>
+                        <ModaretorRoute>
+                            <ProductReviewQueue>
+                            </ProductReviewQueue>
+                        </ModaretorRoute>
+                    </PrivateRoute>
             },
             {
-                path:'reportedContent',
-                element:<ReportedContent></ReportedContent>
+                path: 'reportedContent',
+                element:
+                    <PrivateRoute>
+                        <ModaretorRoute>
+                            <ReportedContent>
+                            </ReportedContent>
+                        </ModaretorRoute>
+                    </PrivateRoute>
             },
 
             // admin routes
             {
                 path: 'manageUsers',
-                element: <ManageUsers></ManageUsers>
+                element:
+                    <PrivateRoute>
+                        <AdminRoute>
+                            <ManageUsers>
+                            </ManageUsers>
+                        </AdminRoute>
+                    </PrivateRoute>
             },
             {
                 path: 'StatisticsPage',
-                element: <StatisticsPage></StatisticsPage>
+                element:
+                    <PrivateRoute>
+                        <AdminRoute>
+                            <StatisticsPage>
+                            </StatisticsPage>
+                        </AdminRoute>
+                    </PrivateRoute>
             },
             {
                 path: 'manageCupon',
-                element: <ManageCupon></ManageCupon>
+                element:
+                    <PrivateRoute>
+                        <AdminRoute>
+                            <ManageCupon>
+                            </ManageCupon>
+                        </AdminRoute>
+                    </PrivateRoute>
             }
 
 
