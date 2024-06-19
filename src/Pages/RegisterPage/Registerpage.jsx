@@ -37,14 +37,16 @@ const Registerpage = () => {
                         const userInfo = {
                             name: data.name,
                             email: data.email,
+                            price: '500',
                             role: 'guest',
                             status: 'verified',
                         }
+                        
 
                         axiosCommon.put('/user', userInfo)
                             .then(res => {
                                 console.log(res.data)
-                                if (res.data.insertedId) {
+                                if (res.data.upsertedCount) {
                                     toast.success('User Created Successfully')
                                     navigate('/')
                                 }
@@ -57,10 +59,6 @@ const Registerpage = () => {
                         toast.error(err.message)
                     })
 
-
-
-                toast.success('User Created Successfully')
-                navigate('/')
             })
 
     };

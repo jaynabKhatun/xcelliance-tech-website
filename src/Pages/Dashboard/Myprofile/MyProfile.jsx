@@ -1,11 +1,11 @@
 
 
-import { useState } from "react";
+
+import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/UseAuth";
 import UseRole from "../../../Hooks/UseRole";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 
-import SubscriptionModal from "../../../components/Modal/SubcriptionModal";
 
 
 
@@ -13,15 +13,12 @@ import SubscriptionModal from "../../../components/Modal/SubcriptionModal";
 
 const MyProfile = () => {
 
-    const [isOpen, setIsEditModalOpen] = useState(false);
+
     const { user, loading } = useAuth();
     const [role, isLoading] = UseRole();
+
     if (isLoading || loading) return <LoadingSpinner></LoadingSpinner>
     // console.log(user);
-
-    const modalHandler = async (selected) => {
-        console.log('modal updated');
-    }
 
 
 
@@ -49,17 +46,14 @@ const MyProfile = () => {
 
                         {
                             role === 'guest' && <div>
-                                <button onClick={() => setIsEditModalOpen(true)} type="button" className="relative px-8 btn-secondary py-4 ml-4 mt-4 overflow-hidden font-semibold rounded btn dark:text-gray-50"> Membership Subscribe
+                                <Link to={'/dashboard/checkOut'}> <button
+
+                                    type="button" className="relative px-8 btn-secondary py-4 ml-4 mt-4 overflow-hidden font-semibold rounded btn dark:text-gray-50"> Membership Subscribe
                                     <span className="absolute top-0 right-0 px-5 py-1 text-xs tracking-wider text-center uppercase whitespace-no-wrap origin-bottom-left transform rotate-45 -translate-y-full translate-x-1/3 bg-blue-400">Pro</span>
                                 </button>
+                                </Link>
                                 {/* modal */}
 
-                                <SubscriptionModal isOpen={isOpen}
-                                    setIsEditModalOpen={setIsEditModalOpen}
-                                    modalHandler={modalHandler}
-                                    user={user} >
-
-                                </SubscriptionModal>
                             </div>
 
                         }

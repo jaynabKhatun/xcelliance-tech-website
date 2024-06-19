@@ -22,6 +22,7 @@ import ProductReviewQueue from "../Pages/Dashboard/Modarator/ProductReviewQueue"
 import ReportedContent from "../Pages/Dashboard/Modarator/ReportedContent";
 import AdminRoute from "./AdminRoute";
 import ModaretorRoute from "./ModaretorRoute";
+import CheckOutForm from "../Pages/Dashboard/Admin/UseerTable/CheckOutForm/CheckOutForm";
 
 export const router = createBrowserRouter([
     {
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
                 path: 'updateItem/:id',
                 element: <PrivateRoute><UpdateItem></UpdateItem></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/productsUp/${params.id}`)
+            },
+            {
+                path:'checkOut',
+                element:<CheckOutForm></CheckOutForm>
             },
 
 
