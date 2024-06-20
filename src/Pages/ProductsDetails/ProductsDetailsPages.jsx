@@ -8,13 +8,16 @@ import { FaStar } from 'react-icons/fa';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { useState } from 'react';
 import ProductReportModal from '../../components/Modal/ProductReportModal';
+import toast from 'react-hot-toast';
+import useAuth from '../../Hooks/UseAuth';
 
 
 
 const ProductsDetailsPages = () => {
     // const axiosSecure = useAxiosSecure();
-    const axiosCommon = useAxiosCommon()
+    const axiosCommon = useAxiosCommon();
     const { id } = useParams();
+    const { user } = useAuth();
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -37,8 +40,25 @@ const ProductsDetailsPages = () => {
 
         const rating = form.rating.value;
         const review = form.review.value;
-        const reviewData = { name, email, rating, review }
+        const reviewData1 = { name, email, rating, review }
+        console.log(reviewData1)
+
+        //review sent to server
+        const reviewData = {
+            name,
+            email,
+            rating,
+            review
+        }
         console.log(reviewData)
+        axiosCommon.post("/review", reviewData)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    toast.success("Review Added Successfully")
+                }
+                form.reset();
+            })
 
     }
 
@@ -77,7 +97,7 @@ const ProductsDetailsPages = () => {
                     <div className='flex justify-end gap-6'>
                         <button className="btn btn-outline btn-secondary border-blue-600">{products.upvotes}<BiSolidLike className='text-4xl' />
                         </button>
-                        <button onClick={()=>setIsOpen(true)}
+                        <button onClick={() => setIsOpen(true)}
                             className="btn btn-outline btn-secondary border-blue-600">
                             Report This Product
                         </button>
@@ -96,11 +116,11 @@ const ProductsDetailsPages = () => {
                             <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                                 <div className="col-span-full sm:col-span-3">
                                     <label className="text-sm">Username</label>
-                                    <input id="username" name='name' type="text" placeholder="Username" className="w-full border p-2 border-blue-600 rounded-md" />
+                                    <input id="username" defaultValue={user?.displayName} name='name' type="text" placeholder="Username" className="w-full border p-2 border-blue-600 rounded-md" />
                                 </div>
                                 <div className="col-span-full sm:col-span-3">
                                     <label className="text-sm">email</label>
-                                    <input type="text" name='email' placeholder="email" className="w-full p-2 border border-blue-600 rounded-md" />
+                                    <input type="text" defaultValue={user?.email} name='email' placeholder="email" className="w-full p-2 border border-blue-600 rounded-md" />
                                 </div>
                                 <div className="col-span-full sm:col-span-3">
                                     <label className="text-sm">Rating</label>

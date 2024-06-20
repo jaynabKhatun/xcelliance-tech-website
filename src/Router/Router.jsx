@@ -23,6 +23,7 @@ import ReportedContent from "../Pages/Dashboard/Modarator/ReportedContent";
 import AdminRoute from "./AdminRoute";
 import ModaretorRoute from "./ModaretorRoute";
 import CheckOutForm from "../Pages/Dashboard/Admin/UseerTable/CheckOutForm/CheckOutForm";
+import Payment from "../Pages/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -77,8 +78,8 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/productsUp/${params.id}`)
             },
             {
-                path:'checkOut',
-                element:<CheckOutForm></CheckOutForm>
+                path:'payment',
+                element:<Payment></Payment>
             },
 
 

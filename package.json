@@ -25,6 +25,7 @@
     "react-card-slider-component": "^1.0.9",
     "react-date-range": "^2.0.1",
     "react-dom": "^18.3.1",
+    "react-google-charts": "^4.0.1",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.51.5",
@@ -35,6 +36,7 @@
     "react-router-dom": "^6.23.1",
     "react-spinners": "^0.13.8",
     "react-tag-input": "^6.10.2",
+    "recharts": "^2.12.7",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.11.1"
   },

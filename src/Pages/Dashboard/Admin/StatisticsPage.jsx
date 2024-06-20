@@ -1,11 +1,12 @@
+import Staicstic from './Staticstic'
 
-
-const StatisticsPage = () => {
+const statisticsPage = () => {
+    // Fetch Admin Stat Data here
     return (
         <div>
-            <h1>admin statistic</h1>
+            <Staicstic></Staicstic>
         </div>
-    );
-};
+    )
+}
 
-export default StatisticsPage;
+export default statisticsPage
