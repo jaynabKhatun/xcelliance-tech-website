@@ -1,20 +1,24 @@
 
 
 import login from '../../../src/assets/login/login.png'
-import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Authprovider/AuthProvider';
-import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import useAuth from '../../Hooks/UseAuth';
+import { useEffect } from 'react';
 
 const LoginPage = () => {
 
-    const { signIn } = useAuth();
+    const { signIn, user, loading } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [user, navigate])
 
 
 
@@ -52,6 +56,10 @@ const LoginPage = () => {
 
 
 
+
+
+
+    if (user || loading) return
 
 
 

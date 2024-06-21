@@ -45,6 +45,7 @@ const AddProduct = () => {
                 tags: newProduct.tags,
                 category: newProduct.category,
                 image: res.data.data.display_url,
+                status: 'pending',
 
                 userName: user?.name,
                 email: user?.email,
@@ -56,7 +57,7 @@ const AddProduct = () => {
             console.log(newItem);
             if (newItem.data.insertedId) {
                 navigate('/Products')
-               
+
                 form.reset();
                 setTags([]);
                 toast.success('Product Added Successfully');

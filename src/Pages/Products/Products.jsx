@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../Hooks/UseAxiosCommon";
 import AllProducts from "./AllProducts";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 
 
@@ -84,7 +84,7 @@ const Products = () => {
                 </div>
             </div>
             <div>
-                <SectionTitle subHeading="hello" heading="All Product" />
+                <SectionTitle heading="All Product" />
             </div>
 
             <form onSubmit={handleSearch} className="form-control w-1/4 ">
