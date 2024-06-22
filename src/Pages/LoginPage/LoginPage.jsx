@@ -31,7 +31,7 @@ const LoginPage = () => {
         const email = form.email.value;
         const password = form.password.value;
         const user = { email, password }
-        console.log(user);
+        // console.log(user);
 
 
         //create user in firebase auth

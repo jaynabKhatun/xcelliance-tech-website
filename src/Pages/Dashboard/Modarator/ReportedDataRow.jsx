@@ -15,7 +15,7 @@ const ReportedDataRow = ({ p, refetch }) => {
 
 
     const handleDelete = (id) => {
-        console.log(id)
+        // console.log(id)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -28,7 +28,7 @@ const ReportedDataRow = ({ p, refetch }) => {
             if (result.isConfirmed) {
    
                 const res = await axiosSecure.delete(`/reportedProducts/${id}`)
-                console.log(res)
+                // console.log(res)
 
                 if (res.data.deletedCount > 0) {
 

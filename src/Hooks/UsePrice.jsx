@@ -12,7 +12,7 @@ const UsePrice = () => {
         enabled: !loading && !!user?.email,
         queryFn: async () => {
             const { data } = await axiosSecure(`/users/price/${user?.email}`);
-            console.log('price', data.price);
+            // console.log('price', data.price);
             return data.price;
         }
     });

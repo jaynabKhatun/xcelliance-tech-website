@@ -8,13 +8,13 @@ import Swal from "sweetalert2";
 const MyProducts = () => {
     const axiosCommon = useAxiosCommon();
     const { user } = useAuth();
-    console.log(user)
+    // console.log(user)
     const { data: myProduct = [], refetch } = useQuery({
 
         queryKey: ['myProducts', user?.email],
         queryFn: async () => {
             const res = await axiosCommon.get(`/product?email=${user?.email}`)
-            console.log(res.data)
+            // console.log(res.data)
             return res.data;
         }
     })

@@ -21,7 +21,7 @@ const Registerpage = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        console.log("form data hre", data);
+        // console.log("form data hre", data);
         createUser(data.email, data.password)
             .then(res => {
                 const loggedUder = res.user;
@@ -45,7 +45,7 @@ const Registerpage = () => {
 
                         axiosCommon.put('/user', userInfo)
                             .then(res => {
-                                console.log(res.data)
+                                // console.log(res.data)
                                 if (res.data.upsertedCount) {
                                     toast.success('User Created Successfully')
                                     navigate('/')

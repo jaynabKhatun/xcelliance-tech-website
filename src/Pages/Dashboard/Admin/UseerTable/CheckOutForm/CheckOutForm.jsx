@@ -24,7 +24,7 @@ const CheckOutForm = () => {
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price: price })
             .then(res => {
-                console.log(res.data.clientSecret);
+                // console.log(res.data.clientSecret);
                 setClientSecret(res.data.clientSecret);
 
             });
@@ -93,7 +93,7 @@ const CheckOutForm = () => {
                     date: new Date()
 
                 }
-                console.log(paymentInfo);
+                // console.log(paymentInfo);
                 try {
                     //save payment info to database
                     await axiosSecure.post('/verifyedCustomer', paymentInfo)

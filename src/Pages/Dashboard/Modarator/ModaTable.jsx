@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import propTypes from "prop-types"
 
 const ModaTable = ({ item, idx }) => {
-    console.log(item);
+    // console.log(item);
     const { name } = item;
     return (
 
@@ -14,5 +15,10 @@ const ModaTable = ({ item, idx }) => {
 
     );
 };
+
+ModaTable.propTypes = {
+    item: propTypes.object.isRequired,
+    idx: propTypes.number.isRequired,
+}
 
 export default ModaTable;

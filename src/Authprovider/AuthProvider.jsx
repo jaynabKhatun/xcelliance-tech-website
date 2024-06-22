@@ -90,7 +90,7 @@ const AuthProvider = ({ children }) => {
             }
 
 
-            console.log('CurrentUser-->', currentUser)
+            // console.log('CurrentUser-->', currentUser)
             setLoading(false)
         })
         return () => {

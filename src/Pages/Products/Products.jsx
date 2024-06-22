@@ -46,9 +46,9 @@ const Products = () => {
     }
 
     const handleItemPerPage = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         const val = parseInt(e.target.value);
-        console.log(val);
+        // console.log(val);
         setItemsPerPage(val);
         setCurrentPage(0);
 

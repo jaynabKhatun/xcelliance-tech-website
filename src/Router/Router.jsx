@@ -75,7 +75,7 @@ export const router = createBrowserRouter([
             {
                 path: 'updateItem/:id',
                 element: <PrivateRoute><UpdateItem></UpdateItem></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/productsUp/${params.id}`)
+                loader: ({ params }) => fetch(`https://b9a12-server-side-jaynab94.vercel.app/productsUp/${params.id}`)
             },
             {
                 path:'payment',

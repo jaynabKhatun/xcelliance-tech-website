@@ -25,7 +25,7 @@ const ProductsDetailsPages = () => {
         queryKey: ['products', id],
         queryFn: async () => {
             const res = await axiosCommon.get(`/products/${id}`);
-            console.log(res.data)
+            // console.log(res.data)
             return res.data;
         }
 
@@ -41,7 +41,7 @@ const ProductsDetailsPages = () => {
         const rating = form.rating.value;
         const review = form.review.value;
         const reviewData1 = { name, email, rating, review }
-        console.log(reviewData1)
+        // console.log(reviewData1)
 
         //review sent to server
         const reviewData = {
@@ -50,10 +50,11 @@ const ProductsDetailsPages = () => {
             rating,
             review
         }
-        console.log(reviewData)
+
+        // console.log(reviewData)
         axiosCommon.post("/review", reviewData)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.insertedId) {
                     toast.success("Review Added Successfully")
                 }

@@ -25,7 +25,7 @@ const SocialLogin = () => {
                     status: 'verified',
                     Timestamp: Date.now(),
                 }
-                console.log(userInfo);
+                // console.log(userInfo);
 
                 axiosCommon.put('/user', userInfo)
                     .then(res => {
