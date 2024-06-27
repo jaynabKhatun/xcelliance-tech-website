@@ -59,7 +59,7 @@ Make sure you have the following installed:
 
 ## Demo
 
-Check out the live website: [Xcelliance](https://xcelliance.firebaseapp.com/)
+Check out the live website: https://xcelliance.firebaseapp.com/
 
 ## Features
 
