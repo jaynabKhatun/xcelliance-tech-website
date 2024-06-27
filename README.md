@@ -4,7 +4,7 @@ Xcelliance is a tech website built with Node.js, Express, React.js, and MongoDB.
 
 ## Table of Contents
 
-- [Demo](# Xcelliance Tech Site
+- [Demo]  https://xcelliance.firebaseapp.com
 
 Xcelliance is a tech website built with Node.js, Express, React.js, and MongoDB. It aims to provide the latest tech news, articles, and resources.
 
@@ -59,7 +59,7 @@ Make sure you have the following installed:
 
 ## Demo
 
-Check out the live website: https://xcelliance.firebaseapp.com/
+Check out the live website: https://xcelliance.firebaseapp.com
 
 ## Features
 
