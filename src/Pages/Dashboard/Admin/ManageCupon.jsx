@@ -4,14 +4,13 @@ import useAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
-
 const ManageCupon = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: offer = [],refetch } = useQuery({
-    queryKey: ["offer"],
+  const { data: cupon = [], refetch } = useQuery({
+    queryKey: ["cupon"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/offer");
-      console.log(res.data);
+      const res = await axiosSecure.get("/cupon");
+      // console.log(res.data);
 
       return res.data;
     },
@@ -27,33 +26,22 @@ const ManageCupon = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-  }).then(async (result) => {
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
       if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/cupon/${id}`);
+        // console.log(res)
 
-          const res = await axiosSecure.delete(`/offer/${id}`)
-          // console.log(res)
-
-          if (res.data.deletedCount > 0) {
-
-              Swal.fire({
-                  title: `has been deleted.`,
-                  text: "Your file has been deleted.",
-                  icon: "success"
-              });
-              refetch();
-              
-
-          }
-
-
-
-
-
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            title: `has been deleted.`,
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          refetch();
+        }
       }
-  });
-   
-    
+    });
   };
 
   return (
@@ -73,7 +61,7 @@ const ManageCupon = () => {
 
         <tbody>
           {/* row 1 */}
-          {offer.map((off, ind) => (
+          {cupon.map((off, ind) => (
             <tr key={off._id} className="bg-blue-100 hover:bg-blue-200 ">
               <th className="border px-4 py-2">{ind + 1}</th>
               <td className="border px-4 py-2">{off.name}</td>
@@ -82,7 +70,7 @@ const ManageCupon = () => {
                 <button className="btn-outline btn-xs">view</button>
               </td>
               <td className="border px-4 py-2">
-                <Link>
+              <Link to={`/dashboard/editCupon/${off._id}`}>
                   <button>
                     <FaEdit></FaEdit>
                   </button>

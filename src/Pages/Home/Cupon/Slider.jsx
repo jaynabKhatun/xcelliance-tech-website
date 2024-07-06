@@ -6,10 +6,10 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const Slider = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: offer = [] } = useQuery({
-    queryKey: ["offer"],
+  const { data: cupon = [] } = useQuery({
+    queryKey: ["cupon"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/offer");
+      const res = await axiosSecure.get("/cupon");
       console.log(res.data);
 
       return res.data;
@@ -21,7 +21,7 @@ const Slider = () => {
         {" "}
       </SectionTitle>
       <div className="flex gap-2">
-        {offer.map((off) => (
+        {cupon.map((off) => (
           <SingleCupon key={off._id} off={off}></SingleCupon>
         ))}
       </div>

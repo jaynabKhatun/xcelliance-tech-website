@@ -1,49 +1,48 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/UseAxiosSecure";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 
-const AddCupon = () => {
-  const axiosSecure = useAxiosSecure();
-  const navigate = useNavigate();
+("react-router-dom");
 
-  const handleAddCupon = async (e) => {
+const EditCupon = () => {
+  const axioSecure = useAxiosSecure();
+  const { id } = useParams();
+  //   console.log(id);
+
+  const { data: cupons } = useQuery({
+    queryKey: ["cupons", id],
+    queryFn: async () => {
+      const res = await axioSecure.get(`/cupons/${id}`);
+      console.log(res.data);
+    //   return res.data;
+    },
+  });
+
+  const handleEditCupon = (e) => {
+    console.log("press");
     e.preventDefault();
-    // console.log("add cupon");
     const form = e.target;
     const name = form.name.value;
     const CuponCode = form.CuponCode.value;
     const discount = form.discount.value;
     const date = form.date.value;
     const newCupon = { name, CuponCode, discount, date };
-    // console.log(newCupon);
-
-    //post cupon
-    try {
-      // Post cupon
-      const cuponAdd = await axiosSecure.post("/cupon", newCupon);
-      if (cuponAdd.data.insertedId) {
-        // console.log(cuponAdd.data);
-        navigate("/dashboard/manageCupon");
-        toast.success("Cupon added successfully");
-      }
-    } catch (error) {
-      console.error("Error adding coupon", error);
-    }
+    console.log(newCupon);
   };
 
   return (
     <div>
       <h1 className="text-2xl flex justify-center font-semibold p-12">
-        Add New cupon
+        Edit Cupon
       </h1>
-      <form onSubmit={handleAddCupon} className="max-w-md mx-auto p-6">
+      <form onSubmit={handleEditCupon} className="max-w-md mx-auto p-6">
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="text"
             name="name"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
+            defaultValue={cupons.name}
             required
           />
           <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
@@ -56,7 +55,7 @@ const AddCupon = () => {
             type="text"
             name="discount"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
+            defaultValue={cupons.discount}
             required
           />
           <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
@@ -68,7 +67,7 @@ const AddCupon = () => {
             type="text"
             name="CuponCode"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
+            defaultValue={cupons.CuponCode}
             required
           />
           <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
@@ -81,7 +80,7 @@ const AddCupon = () => {
             type="date"
             name="date"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
+            defaultValue={cupons.date}
             required
           />
           <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
@@ -100,4 +99,4 @@ const AddCupon = () => {
   );
 };
 
-export default AddCupon;
+export default EditCupon;

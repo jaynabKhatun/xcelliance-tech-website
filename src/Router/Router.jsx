@@ -22,6 +22,7 @@ import ModaretorRoute from "./ModaretorRoute";
 import CheckOutForm from "../Pages/Dashboard/Admin/UseerTable/CheckOutForm/CheckOutForm";
 import Payment from "../Pages/Payment/Payment";
 import AddCupon from "../Pages/Dashboard/Admin/AddCupon";
+import EditCupon from "../Pages/Dashboard/Admin/EditCupon";
 
 export const router = createBrowserRouter([
   {
@@ -167,6 +168,17 @@ export const router = createBrowserRouter([
             </AdminRoute>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "editCupon/:id",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <EditCupon></EditCupon>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+       
       },
     ],
   },
