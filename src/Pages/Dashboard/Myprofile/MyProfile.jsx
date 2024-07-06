@@ -21,6 +21,7 @@ const MyProfile = () => {
 
     const { user, loading } = useAuth();
     const [role, isLoading] = UseRole();
+    console.log(role);
 
 
     if (isLoading || loading) return <LoadingSpinner></LoadingSpinner>

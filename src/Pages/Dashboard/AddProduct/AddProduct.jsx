@@ -54,7 +54,7 @@ const AddProduct = () => {
 
             }
             const newItem = await axiosCommon.post('/products', addProduct)
-            console.log(newItem);
+          
             if (newItem.data.insertedId) {
                 navigate('/Products')
 

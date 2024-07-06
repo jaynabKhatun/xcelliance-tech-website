@@ -1,7 +1,4 @@
-import {
-    createBrowserRouter,
-
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import LoginPage from "../Pages/LoginPage/LoginPage";
@@ -24,121 +21,153 @@ import AdminRoute from "./AdminRoute";
 import ModaretorRoute from "./ModaretorRoute";
 import CheckOutForm from "../Pages/Dashboard/Admin/UseerTable/CheckOutForm/CheckOutForm";
 import Payment from "../Pages/Payment/Payment";
+import AddCupon from "../Pages/Dashboard/Admin/AddCupon";
 
 export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Main></Main>,
-        errorElement: <ErropPage></ErropPage>,
-        children: [
-            {
-                index: true,
-                element: <Home></Home>
-            },
-            {
-                path: '/login',
-                element: <LoginPage></LoginPage>
-            },
-            {
-                path: '/register',
-                element: <Registerpage></Registerpage>
-            },
-            {
-                path: '/products',
-                element: <Products></Products>
-            },
-            {
-                path: '/products/:id',
-                element: <PrivateRoute><ProductsDetailsPages></ProductsDetailsPages></PrivateRoute>
-            }
-        ]
-    },
-    {
-        path: 'dashboard',
-        element: <PrivateRoute><Dasboard></Dasboard></PrivateRoute>,
-        children: [
+  {
+    path: "/",
+    element: <Main></Main>,
+    errorElement: <ErropPage></ErropPage>,
+    children: [
+      {
+        index: true,
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <LoginPage></LoginPage>,
+      },
+      {
+        path: "/register",
+        element: <Registerpage></Registerpage>,
+      },
+      {
+        path: "/products",
+        element: <Products></Products>,
+      },
+      {
+        path: "/products/:id",
+        element: (
+          <PrivateRoute>
+            <ProductsDetailsPages></ProductsDetailsPages>
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dasboard></Dasboard>
+      </PrivateRoute>
+    ),
+    children: [
+      // normal user routes
 
-            // normal user routes
+      {
+        path: "myProfile",
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "addProduct",
+        element: (
+          <PrivateRoute>
+            <AddProduct></AddProduct>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "myProducts",
+        element: (
+          <PrivateRoute>
+            <MyProducts></MyProducts>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "updateItem/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateItem></UpdateItem>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/productsUp/${params.id}`),
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
+      },
 
-            {
-                path: 'myProfile',
-                element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
-            },
-            {
-                path: 'addProduct',
-                element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>
-            },
-            {
-                path: 'myProducts',
-                element: <PrivateRoute><MyProducts></MyProducts></PrivateRoute>
-            },
-            {
-                path: 'updateItem/:id',
-                element: <PrivateRoute><UpdateItem></UpdateItem></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://b9a12-server-side-jaynab94.vercel.app/productsUp/${params.id}`)
-            },
-            {
-                path:'payment',
-                element:<Payment></Payment>
-            },
+      //modarator routes
+      {
+        path: "productReview",
+        element: (
+          <PrivateRoute>
+            <ModaretorRoute>
+              <ProductReviewQueue></ProductReviewQueue>
+            </ModaretorRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "reportedContent",
+        element: (
+          <PrivateRoute>
+            <ModaretorRoute>
+              <ReportedContent></ReportedContent>
+            </ModaretorRoute>
+          </PrivateRoute>
+        ),
+      },
 
+      // admin routes
+      {
+        path: "manageUsers",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers></ManageUsers>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "StatisticsPage",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <StatisticsPage></StatisticsPage>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manageCupon",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageCupon></ManageCupon>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
 
-            //modarator routes
-            {
-                path: 'productReview',
-                element:
-                    <PrivateRoute>
-                        <ModaretorRoute>
-                            <ProductReviewQueue>
-                            </ProductReviewQueue>
-                        </ModaretorRoute>
-                    </PrivateRoute>
-            },
-            {
-                path: 'reportedContent',
-                element:
-                    <PrivateRoute>
-                        <ModaretorRoute>
-                            <ReportedContent>
-                            </ReportedContent>
-                        </ModaretorRoute>
-                    </PrivateRoute>
-            },
-
-            // admin routes
-            {
-                path: 'manageUsers',
-                element:
-                    <PrivateRoute>
-                        <AdminRoute>
-                            <ManageUsers>
-                            </ManageUsers>
-                        </AdminRoute>
-                    </PrivateRoute>
-            },
-            {
-                path: 'StatisticsPage',
-                element:
-                    <PrivateRoute>
-                        <AdminRoute>
-                            <StatisticsPage>
-                            </StatisticsPage>
-                        </AdminRoute>
-                    </PrivateRoute>
-            },
-            {
-                path: 'manageCupon',
-                element:
-                    <PrivateRoute>
-                        <AdminRoute>
-                            <ManageCupon>
-                            </ManageCupon>
-                        </AdminRoute>
-                    </PrivateRoute>
-            }
-
-
-        ]
-    }
+      {
+        path: "addCupon",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AddCupon></AddCupon>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
 ]);
-
