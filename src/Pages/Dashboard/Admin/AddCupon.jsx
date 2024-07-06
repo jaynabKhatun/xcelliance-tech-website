@@ -1,7 +1,13 @@
 import React from "react";
+import useAxiosSecure from "../../../Hooks/UseAxiosSecure";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddCupon = () => {
-  const handleAddCupon = (e) => {
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+
+  const handleAddCupon = async (e) => {
     e.preventDefault();
     console.log("add cupon");
     const form = e.target;
@@ -10,7 +16,20 @@ const AddCupon = () => {
     const discount = form.discount.value;
     const date = form.date.value;
     const newCupon = { name, CuponCode, discount, date };
-    console.log(newCupon);
+    // console.log(newCupon);
+
+    //post cupon
+    try {
+      // Post cupon
+      const cuponAdd = await axiosSecure.post("/offer", newCupon);
+      if (cuponAdd.data.insertedId) {
+        // console.log(cuponAdd.data);
+        navigate("/dashboard/manageCupon");
+        toast.success("Cupon added successfully");
+      }
+    } catch (error) {
+      console.error("Error adding coupon", error);
+    }
   };
 
   return (
