@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/UseAxiosSecure";
-import { FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
+
 
 const ManageCupon = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: offer = [] } = useQuery({
+  const { data: offer = [],refetch } = useQuery({
     queryKey: ["offer"],
     queryFn: async () => {
       const res = await axiosSecure.get("/offer");
@@ -14,6 +16,45 @@ const ManageCupon = () => {
       return res.data;
     },
   });
+
+  const handleDelete = async (id) => {
+    console.log(id);
+    //delete from db
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+  }).then(async (result) => {
+      if (result.isConfirmed) {
+
+          const res = await axiosSecure.delete(`/offer/${id}`)
+          // console.log(res)
+
+          if (res.data.deletedCount > 0) {
+
+              Swal.fire({
+                  title: `has been deleted.`,
+                  text: "Your file has been deleted.",
+                  icon: "success"
+              });
+              refetch();
+              
+
+          }
+
+
+
+
+
+      }
+  });
+   
+    
+  };
 
   return (
     <div className="overflow-x-auto ">
@@ -24,9 +65,8 @@ const ManageCupon = () => {
             <th className=" px-4 py-2">Serial</th>
             <th className="px-4 py-2">Name</th>
             <th className="px-4 py-2">Cupon Code</th>
-
-            <th className="px-4 py-2">Date</th>
-            <th className="px-4 py-2">Persentage</th>
+            <th className="px-4 py-2">View</th>
+            <th className="px-4 py-2">edit</th>
             <th className=" px-4 py-2">Delete</th>
           </tr>
         </thead>
@@ -38,10 +78,20 @@ const ManageCupon = () => {
               <th className="border px-4 py-2">{ind + 1}</th>
               <td className="border px-4 py-2">{off.name}</td>
               <td className="border px-4 py-2">{off.CuponCode}</td>
-              <td className="border px-4 py-2">{off.date}</td>
-              <td className="border px-4 py-2">{off.discount}</td>
               <td className="border px-4 py-2">
-                <FaTrash></FaTrash>
+                <button className="btn-outline btn-xs">view</button>
+              </td>
+              <td className="border px-4 py-2">
+                <Link>
+                  <button>
+                    <FaEdit></FaEdit>
+                  </button>
+                </Link>
+              </td>
+              <td className="border px-4 py-2">
+                <button onClick={() => handleDelete(off._id)}>
+                  <FaTrash></FaTrash>
+                </button>
               </td>
             </tr>
           ))}
