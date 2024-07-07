@@ -23,6 +23,7 @@ import CheckOutForm from "../Pages/Dashboard/Admin/UseerTable/CheckOutForm/Check
 import Payment from "../Pages/Payment/Payment";
 import AddCupon from "../Pages/Dashboard/Admin/AddCupon";
 import EditCupon from "../Pages/Dashboard/Admin/EditCupon";
+import PaymentSuccess from "../Pages/Dashboard/PaymentSucces/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -105,6 +106,11 @@ export const router = createBrowserRouter([
         element: <Payment></Payment>,
       },
 
+      {
+        path: "paymentSuccess",
+        element: <PaymentSuccess></PaymentSuccess>,
+      },
+
       //modarator routes
       {
         path: "productReview",
@@ -178,7 +184,6 @@ export const router = createBrowserRouter([
             </AdminRoute>
           </PrivateRoute>
         ),
-       
       },
     ],
   },

@@ -5,6 +5,7 @@ import UsePrice from "../../../../../Hooks/UsePrice";
 import useAuth from "../../../../../Hooks/UseAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 
 const CheckOutForm = () => {
@@ -16,22 +17,22 @@ const CheckOutForm = () => {
     const [error, setError] = useState('');
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
+    console.log('clientSecret', clientSecret);
 
 
-    const [price] = UsePrice();
-    // console.log('price', price);
+
 
     useEffect(() => {
-        axiosSecure.post('/create-payment-intent', { price: price })
+        axiosSecure.post('/create-payment-intent')
             .then(res => {
-                // console.log(res.data.clientSecret);
-                setClientSecret(res.data.clientSecret);
+                console.log(res.data);
+                setClientSecret(res?.data?.clientSecret);
 
             });
 
 
 
-    }, [axiosSecure, price])
+    }, [ axiosSecure]);
 
     const handleSubmit = async (event) => {
         // Block native form submission.
@@ -99,6 +100,7 @@ const CheckOutForm = () => {
                     await axiosSecure.post('/verifyedCustomer', paymentInfo)
                         .then(res => {
                             console.log(res.data);
+                            navigate('/Dashboard/paymentSuccess');
                         })
 
 
