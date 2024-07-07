@@ -39,7 +39,7 @@ const Registerpage = () => {
                             email: data.email,
                             price: '500',
                             role: 'guest',
-                            status: 'verified',
+                            status: 'nonVerifyed',
                         }
                         
 

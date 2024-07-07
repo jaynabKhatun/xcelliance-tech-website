@@ -86,6 +86,7 @@ const CheckOutForm = () => {
             console.log('payment Intent', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
                 toast.success('Payment Successfull');
+
                 //create payment info
                 const paymentInfo = {
                     transactionId: paymentIntent.id,
@@ -98,8 +99,13 @@ const CheckOutForm = () => {
                 try {
                     //save payment info to database
                     await axiosSecure.post('/verifyedCustomer', paymentInfo)
-                        .then(res => {
+                        .then( async res => {
                             console.log(res.data);
+                            //update status of user
+                            await axiosSecure.patch(`/users/verify/${user.email}`)
+                            toast.success('User verified successfully');
+
+                        
                             navigate('/Dashboard/paymentSuccess');
                         })
 

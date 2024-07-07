@@ -17,7 +17,7 @@ const UsePrice = () => {
         }
     });
 
-    return [price, isLoading];
+    return {price, isLoading};
 };
 
 export default UsePrice;
