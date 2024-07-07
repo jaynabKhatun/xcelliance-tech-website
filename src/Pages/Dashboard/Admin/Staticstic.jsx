@@ -21,9 +21,9 @@ const Statistic = () => {
 
     // Prepare data for pie chart
     const piechartData = [
-        { name: 'Total Products', value: stateData.totalProducts },
-        { name: 'Total Users', value: stateData.totalUsers },
-        { name: 'Total Reviews', value: stateData.totalReviews },
+        { name: 'Total Products', value: stateData.totalProducts || 0 },
+        { name: 'Total Users', value: stateData.totalUsers || 0 },
+        { name: 'Total Reviews', value: stateData.totalReviews || 0 },
     ];
 
     return (
@@ -32,7 +32,7 @@ const Statistic = () => {
             <div className='mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                 {/* Sales Card */}
                 <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
-                    <div className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-orange-600 to-orange-400 text-white shadow-orange-500/40`}>
+                    <div className='bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-orange-600 to-orange-400 text-white shadow-orange-500/40'>
                         <FaDollarSign className='w-6 h-6 text-white' />
                     </div>
                     <div className='p-4 text-right'>
@@ -46,7 +46,7 @@ const Statistic = () => {
                 </div>
                 {/* Users Card */}
                 <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
-                    <div className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40`}>
+                    <div className='bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40'>
                         <FaUserAlt className='w-6 h-6 text-white' />
                     </div>
                     <div className='p-4 text-right'>
@@ -60,7 +60,7 @@ const Statistic = () => {
                 </div>
                 {/* Total Reviews */}
                 <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
-                    <div className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-blue-600 to-blue-400 text-white shadow-blue-500/40`}>
+                    <div className='bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-blue-600 to-blue-400 text-white shadow-blue-500/40'>
                         <BsFillCartPlusFill className='w-6 h-6 text-white' />
                     </div>
                     <div className='p-4 text-right'>
@@ -83,12 +83,10 @@ const Statistic = () => {
                                 data={piechartData}
                                 cx='50%'
                                 cy='50%'
-                                innerRadius={60}
-                                outerRadius={80}
+                                outerRadius={150}
                                 fill='#8884d8'
-                                paddingAngle={2}
                                 dataKey='value'
-                                labelLine={false}
+                                label={(entry) => `${entry.name}: ${entry.value}`}
                             >
                                 {piechartData.map((entry, index) => (
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
