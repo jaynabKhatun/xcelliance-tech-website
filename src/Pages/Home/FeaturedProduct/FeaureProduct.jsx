@@ -16,7 +16,7 @@ const FeaureProduct = () => {
         queryFn: async () => {
             const res = await axiosCommon.get('/products')
             // console.log(res.data)
-            res.data = res.data.filter(product => product.category === 'Web Apps')
+            res.data = res.data.filter(product => product.category === 'Featured')
             return (res.data)
 
         }
