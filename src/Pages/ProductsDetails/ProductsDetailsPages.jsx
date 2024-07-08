@@ -108,10 +108,14 @@ const ProductsDetailsPages = () => {
           </div>
 
           <div className="flex justify-end gap-6">
+            {/* upvote byn */}
+            
             <button className="btn btn-outline btn-secondary border-blue-600">
               {products.upvotes}
               <BiSolidLike className="text-4xl" />
             </button>
+
+            {/* report product */}
             <button
               onClick={() => setIsOpen(true)}
               className="btn btn-outline btn-secondary border-blue-600"

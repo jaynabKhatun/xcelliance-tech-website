@@ -99,7 +99,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/productsUp/${params.id}`),
+          fetch(`https://xcellinace-tech-server-side.vercel.app/productsUp/${params.id}`),
       },
       {
         path: "payment",
